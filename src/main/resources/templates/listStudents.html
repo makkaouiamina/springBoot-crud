@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>List of students page</title>
+
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.0.0-beta1/css/bootstrap.min.css} "/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="@{/webjars/sweetalert2/10.10.4/dist/sweetalert2.min.css}">
+
+</head>
+<body>
+<div class="container" align="center">
+<div style="margin-top: 20px;">
+<h1 >Student list</h1>
+<br>
+<div class="col col-lg-6">
+<div th:if="${success} != null">
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+         <span>
+		  	<strong th:text="${success}"></strong> 
+		  </span>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+</div>
+
+<div th:if="${updateSuccess} != null">
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+         <span>
+		  	<strong th:text="${updateSuccess}"></strong> 
+		  </span>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+</div>
+<div th:if="${deleteSuccess} != null">
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+         <span>
+		  	<strong th:text="${deleteSuccess}"></strong> 
+		  </span>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+</div>
+</div>
+<div class="row">
+<div align="center">
+<a class="btn btn-outline-primary col-3" id="addBtn" href="/student/add"><i class="fas fa-user-plus" style="font-size:15px;"></i></a>
+</div>
+</div>
+<br>
+
+
+<div class="col col-lg-10">
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="student : ${listStudents}">
+        <td th:utext="${student.id}">Student Id</td>
+        <td th:text="${student.firstName}">First Name</td>
+        <td th:text="${student.lastName}">Last Name</td>
+        <td th:utext="${student.email}">Email</td>
+         <td>
+                <a class="btn btn-outline-secondary" th:href="@{'/student/detail/' + ${student.id}}"><i class="fas fa-info-circle" style="font-size:13px;"></i></a>
+                &nbsp;&nbsp;&nbsp;
+                <a class="btn btn-outline-warning" th:href="@{'/student/editform/' + ${student.id}}"><i class="fas fa-user-edit" style="font-size:13px;"></i></a>
+                &nbsp;&nbsp;&nbsp;
+                <a class="btn btn-outline-danger" id="deleteBtn" th:href="@{'/student/delete/' + ${student.id}}"><i class="fas fa-user-minus" style="font-size:13px;"></i></a>                
+         </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+</div>
+
+</div>
+
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/2.5.4/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.0.0-beta1/js/bootstrap.min.js}"></script>
+
+
+
+</body>
+</html>

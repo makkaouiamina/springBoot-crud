@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.0.0-beta1/css/bootstrap.min.css} "/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+
+<div class="container col col-lg-4" >
+<div class="card" style="margin-top: 70px; background-color: #F4F8FE;" >
+<div class="card-body">
+<p align="center" style="font-size: 20px;">Edit Informations</p>
+<br><br>
+<form action="#" th:action="@{/student/edit/{id}(id=${student.id})}" th:object="${student}" method="post">
+  <div class="mb-3">
+    <input type="text" th:field="*{firstName}" class="form-control" id="firstName">
+  </div>
+   <div class="mb-3">
+    <input type="text" th:field="*{lastName}" class="form-control" id="lastName">
+  </div>
+  <div class="mb-3">
+    <input type="email" th:field="*{email}" class="form-control" id="email">
+  </div>
+  <br>
+  <div align="center">
+  <button type="submit" class="btn btn-primary btn-sm col-12">Update</button>
+  </div>
+
+</form>
+
+</div>
+</div>
+</div>
+
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/2.5.4/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.0.0-beta1/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
